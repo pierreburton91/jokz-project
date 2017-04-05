@@ -1,0 +1,17 @@
+<my-loader *ngIf="loading"></my-loader>
+<div *ngIf="!loading">
+	<div class="row">
+		<div class="title-container">
+			<h2><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Post a new Joke</h2>
+			<p class="subtitle">Write down your joke giving it a fun and descriptive title.<br>Increase your joke's effectiveness! Use punctuation and line breaks to give it rythm and readability.</p>
+		</div>
+	</div>
+	<div class="row">
+		<form (ngSubmit)="add(title.value, content.value)" novalidate>
+		<input class="forms" type="text" name="title" #title placeholder="My joke's title" (focus)="checkIfEmpty($event)" [ngClass]="{'empty': isEmptyTitle}">
+		<textarea class="forms" name="content" #content placeholder="My joke's story..." (focus)="checkIfEmpty2($event)" [ngClass]="{'empty': isEmptyContent}"></textarea>
+		<button type="submit" class="forms">Submit</button>
+		</form>
+		<button class="forms borderless" (click)="goBack(title.value, content.value)">Back</button>
+	</div>
+</div>

@@ -1,0 +1,32 @@
+<my-loader *ngIf="loading"></my-loader>
+<div *ngIf="users && !loading">
+	<div class="row">
+		<h2><i class="fa fa-users" aria-hidden="true"></i>&nbsp;{{title}}</h2>
+	</div>
+	<div class="row">
+		<div class="user" *ngFor="let user of users" (click)="onSelect(user)" [class.selected]="user.id === selectedUserById">
+			<div class="row">
+				<div class="picture-thumb"><img src="{{user.picture}}"></div>
+				<h3>{{user.nickname}}</h3>
+			</div>
+			<div class="row">
+				<table class="user-infos">
+					<tr>
+						<th>Full name</th>
+						<th>Email</th>
+						<th>Jokes</th>
+						<th>Registred for</th>
+						<th>Admin?</th>
+					</tr>
+					<tr>
+						<td>{{user.firstname}}&nbsp;{{user.lastname}}</td>
+						<td>{{user.email}}</td>
+						<td>{{user.jokes}}</td>
+						<td>{{user.registred}}&nbsp;days</td>
+						<td>{{user.admin}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

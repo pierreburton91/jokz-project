@@ -1,0 +1,22 @@
+<my-loader *ngIf="loading"></my-loader>
+<div *ngIf="!loading">
+	<div class="login-overlay">
+		<div class="login-container">
+			<div class="row">
+				<div class="title-container">
+					<div class="login-title"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Log In</div>
+				</div>
+			</div>
+			<div class="row">
+				<form (ngSubmit)="attemptLogin(nickname.value, password.value)" novalidate>
+					<input class="forms" type="text" name="nickname" #nickname placeholder="Username" (focus)="checkIfEmpty($event)" [ngClass]="{'empty': isEmptyNickname}">
+					<input class="forms" type="password" name="password" #password placeholder="Password" (focus)="checkIfEmpty2($event)" [ngClass]="{'empty': isEmptyPassword}">
+					<p *ngIf="loginError" class="subtitle error">Incorrect username or password!</p>
+					<p class="subtitle">Not a member yet ?&nbsp;&nbsp;<a routerLink="/register">Sign up</a></p>
+					<button type="submit" class="forms">Log in</button>
+					<button type="reset" class="forms borderless" (click)="goBack()">Back</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,26 @@
+<my-loader *ngIf="loading"></my-loader>
+<div *ngIf="!loading && user">
+	<div class="row">
+		<div class="profile-card">
+			<div class="picture-container" [style.background-image]="setPicture()">
+			</div>
+			<div class="title-container">
+				<h4>{{user.nickname}}</h4>
+				<p class="subtitle">{{user.firstname}}&nbsp;{{user.lastname}}<br><span>{{user.jokes}}&nbsp;jokes&nbsp;&nbsp;|&nbsp;&nbsp;Joined&nbsp;{{time}}&nbsp;days&nbsp;ago</span></p>
+			</div>
+		</div>
+	</div>
+	<div *ngIf="!loading && jokes" class="row">
+		<div class="joke" *ngFor="let joke of jokes" (click)="onSelect(joke)" [class.selected]="selectedJoke == joke.id">
+			<h3>{{joke.title}}</h3>
+			<p [innerHTML]="joke.content"></p>
+		</div>
+	</div>
+	<div *ngIf="!loading && jokes.length == 0" class="row">
+		<p class="subtitle">This user doesn't seem to have posted jokes already.</p>
+	</div>
+</div>
+<div *ngIf="!loading && !user">
+	<h2>404</h2>
+	<p class="subtitle">This user does not exist yet or has been removed!<br>Please, find your way back.</p>
+</div>

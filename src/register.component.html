@@ -1,0 +1,25 @@
+<my-loader *ngIf="loading"></my-loader>
+<div *ngIf="!loading">
+	<div class="login-overlay">
+		<div class="register-container">
+			<div class="row">
+				<div class="title-container">
+					<div class="login-title"><i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp;Sign up</div>
+					<p class="subtitle">Please, fill the form.<br>All fields are mandatory.</p>
+				</div>
+			</div>
+			<div class="row">
+				<form (ngSubmit)="register(nickname.value, password.value)" novalidate>
+					<input class="forms" type="text" name="nickname" #nickname placeholder="Username" (focus)="checkIfEmpty($event)" [ngClass]="{'empty': isEmptyNickname}">
+					<input class="forms" type="password" name="password" #password placeholder="Password" (focus)="checkIfEmpty2($event)" [ngClass]="{'empty': isEmptyPassword}">
+					<input class="forms" type="password" name="passwordRepeat" #passwordRepeat placeholder="Repeat password" (focus)="checkIfEmpty2($event)" [ngClass]="{'empty': isEmptyPassword}">
+					<input class="forms" type="text" name="First name" #firstName placeholder="First name" (focus)="checkIfEmpty2($event)" [ngClass]="{'empty': isEmptyPassword}">
+					<input class="forms" type="text" name="Last name" #lastName placeholder="Last name" (focus)="checkIfEmpty2($event)" [ngClass]="{'empty': isEmptyPassword}">
+					<input class="forms" type="email" name="email" #email placeholder="Email adress" (focus)="checkIfEmpty2($event)" [ngClass]="{'empty': isEmptyPassword}">
+					<button type="submit" class="forms">Sign up</button>
+					<button type="reset" class="forms borderless" (click)="goBack()">Back</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

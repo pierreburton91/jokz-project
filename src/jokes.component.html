@@ -1,0 +1,19 @@
+<my-loader *ngIf="loading"></my-loader>
+<div *ngIf="!loading">
+	<div class="row">
+		<h2><i class="fa fa-star" aria-hidden="true"></i>&nbsp;Featured Jokes</h2>
+		<label class="search-bar">
+			<input class="search-input" type="search" placeholder="Filter..." [(ngModel)]="search">
+			<div class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></div>
+		</label>
+	</div>
+	<div class="row">
+		<div class="joke" *ngFor="let joke of jokes | BasicFilter: search" (click)="onSelect(joke)" [class.selected]="selectedJoke == joke.id">
+			<h3>{{joke.title}}</h3>
+			<p [innerHTML]="joke.content"></p>
+			<div *ngIf="selectedJoke == joke.id">
+				<div><span class="label">Added by:&nbsp;</span><a title="{{joke.author}}" [routerLink]="['/users', joke.author]" >{{joke.author}}</a></div>
+			</div>
+		</div>
+	</div>
+</div>

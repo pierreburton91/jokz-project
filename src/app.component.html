@@ -1,0 +1,39 @@
+<header [class.scrolled]="isScrolled() === true">
+	<div class="container no-padding">
+		<h1>{{AppName}}</h1>
+		<nav>
+			<a class="add-joke" routerLink="/add-joke" routerLinkActive="active-link"><i class="fa fa-pencil" aria-hidden="true"></i> Post a joke</a>
+			<a routerLink="/jokes" routerLinkActive="active-link">Jokes</a>
+			<a *ngIf="isAdmin" routerLink="/users" routerLinkActive="active-link">Users</a>
+			<span *ngIf="!isLogged">
+				<a routerLink="/login" routerLinkActive="active-link">Log in</a>
+				<a routerLink="/register" routerLinkActive="active-link">Sign up</a>
+			</span>
+			<span *ngIf="isLogged" class="user-snap">
+				<div class="picture-snap" [routerLink]="['/users', username]">
+					<img src="{{picture}}">
+				</div>
+				<div class="snap-string-container">
+					<div class="snap-user" [routerLink]="['/users', username]">
+						{{username}}
+					</div>
+					<a class="snap-logout" (click)="logOut()">
+						<i class="fa fa-power-off" aria-hidden="true">&nbsp;</i>Log out
+					</a>
+				</div>
+			</span>
+		</nav>
+	</div>
+</header>
+<div class="container content">
+	<router-outlet></router-outlet>
+</div>
+<footer>
+	<div class="container">
+		<ul>
+			<li><span>{{AppName}}</span></li>
+			<li>By <a href="http://pierre-burton.be" target="_blank" title="Pierre Burton, Digital Handyman">Pierre Burton</a></li>
+			<li>Powered by <a href="http://angular.io" target="_blank" title="Angular">Angular</a></li>
+		</ul>
+	</div>
+</footer>
